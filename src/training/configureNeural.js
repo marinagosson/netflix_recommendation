@@ -51,14 +51,6 @@ export async function configureNeuralNetAndTrain(trainData) {
         epochs: 20, // olhe para todos os modelos
         batchSize: 32,
         shuffle: true, // sempre vai misturar os exemplos para melhorar o aprendizado
-        callbacks: {
-            onEpochEnd: (epoch, logs) => {
-                console.log(
-                    `Epoch ${epoch + 1}`,
-                    logs
-                );
-            }
-        }
     })
     
     return model

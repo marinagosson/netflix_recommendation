@@ -4,9 +4,25 @@ export function recommendMovies(
     context,
     limit = 10) { 
     console.log("recomendando filmes...")
-    
+    console.log(userId);
     // obter o usuario
     const user = context.usersWithHistoryById.get(userId)
+
+    console.log({
+        userId,
+        userEncontrado: !!user,
+        watched: user?.watchedMovies.length
+    });
+
+    if (!user) {
+        console.log("Usuário não encontrado");
+        return [];
+    }
+
+    if (!user.watchedMovies.length) {
+        console.log("Usuário sem histórico");
+        return [];
+    }
 
     // separar os id dos filmes que ele ja assistiu
     console.log("Quantidade de filmes assistidos:", user.watchedMovies.length)

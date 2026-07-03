@@ -2,6 +2,7 @@
 import { recommendMovies } from "../recommendation/recommendMovie.js";
 import { renderWatchedMovies } from "./renderWatchedMovies.js";
 import { generateRecommendations } from "../recommendation/generateRecommendations.js";
+import { getSelectedUser } from "./userSelect.js";
 
 export function registerEvents(model, context) {
     console.log("registrando eventos...")
@@ -9,32 +10,26 @@ export function registerEvents(model, context) {
     const button = document.getElementById("recommendButton")
     const select = document.getElementById("usersSelect")
 
-    button.addEventListener("click", () => { 
+    button.addEventListener("click", () => {  
         const user = getSelectedUser(context)
-        const limit = Number(document.getElementById("limit").value)
 
         generateRecommendations(
             user.id,
             model,
             context,
-            limit 
         )
     })
 
     select.addEventListener("change", () => {
-        renderWatchedMovies(getSelectedUser(context));
+        const user = getSelectedUser(context);
+
+        renderWatchedMovies(user);
+        console.log(user.id);
+        generateRecommendations(
+            user.id,
+            model,
+            context,  
+        )
     });
-
-}
-
-function getSelectedUser(context) {
-
-    const id = Number(
-        document.getElementById("usersSelect").value
-    );
-
-    return context.usersWithHistory.find(
-        user => user.id === id
-    );
 
 }

@@ -79,7 +79,7 @@ async function init() {
     // passo 6: criar rede neural e treinar os modelos
     const model = await configureNeuralNetAndTrain(trainData)
 
-    generateRecommendations(selectedUser, model, context, 10)
+    generateRecommendations(selectedUser.id, model, context, 10)
 
     button.disabled = false;
     button.textContent = "Gerar Recomendações";
