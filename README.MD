@@ -6,6 +6,14 @@ O objetivo é construir um mecanismo de recomendação baseado em aprendizado su
 
 ---
 
+🔗 **Demonstração Online**
+
+Aguarde o carregamento do site...
+
+https://marinagosson.github.io/netflix_recommendation/
+
+---
+
 # Demonstração
 
 O sistema permite:
@@ -323,10 +331,6 @@ Como solução, foi implementada uma estratégia baseada em **Negative Sampling*
 - uma quantidade equivalente de exemplos negativos aleatórios
 
 Essa abordagem reduziu drasticamente o consumo de memória, mantendo o treinamento viável.
-
----
-
-# Teste GitHub Pages
 
 ---
 
