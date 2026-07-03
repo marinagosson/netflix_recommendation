@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Recommendation</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <header>
+            <h1 id="title">
+                🎬 Netflix Recommendation System
+            </h1>
+            <div id="statusContainer">
+
+                <span id="statusIcon">⏳</span>
+
+                <span id="status">
+                    Carregando...
+                </span>
+
+            </div>
+        </header>
+
+        <section id="application">
+
+            <section class="controls">
+
+            <div class="field">
+
+                <label for="users">
+                    Usuário
+                </label>
+
+                <select id="usersSelect"></select>
+
+            </div>
+
+            <div class="field">
+
+                <label for="limit">
+                    Quantidade
+                </label>
+
+                <select id="limit">
+
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+
+                </select>
+
+            </div>
+
+            <button id="recommendButton">
+                    Gerar recomendações
+            </button>
+
+            </section>
+
+            <section>
+
+            <h2>🎬 Filmes assistidos</h2>
+
+            <div
+                id="watchedMovies"
+                class="horizontal-list">
+
+            </div>
+
+            </section>
+
+            <section>
+
+            <h2>✨ Recomendações</h2>
+
+            <div id="recommendations" class="horizontal-list"></div>
+
+            </section>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script type="module" src="./src/main.js"></script>
+
+</body>
+</html>
