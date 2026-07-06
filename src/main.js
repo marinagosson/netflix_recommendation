@@ -67,8 +67,6 @@ async function init() {
     // passo 3
     buildMoviesVector(context);
 
-    console.log(context.movieVectors[0]);
-
     const movieVectorsCount = await getCountMovieVectors();
 
     if (movieVectorsCount.count === 0) {
