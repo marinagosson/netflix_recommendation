@@ -3,7 +3,7 @@ export function renderRecommendations(recommendations) {
     const container = document.getElementById("recommendations")
 
     container.innerHTML = ""
-
+    debugger
     recommendations.forEach(movie => {
         
         const card = document.createElement("article")

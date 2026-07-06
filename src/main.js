@@ -9,8 +9,6 @@ import { configureNeuralNetAndTrain } from "./training/configureNeural.js"
 import { buildMoviesVector } from "./vectorizers/movieVectorizer.js"; 
 import { buildUsersVector } from "./vectorizers/userVectorizer.js";
 
-import { recommendMovies } from "./recommendation/recommendMovie.js";
-
 import { renderUsers } from "./ui/renderUsers.js";
 
 import { registerEvents } from "./ui/events.js";
@@ -22,6 +20,14 @@ import { enableHorizontalScroll } from "./ui/enableHorizontalScroll.js";
 import { getSelectedUser } from "./ui/userSelect.js";
 
 import { generateRecommendations } from "./recommendation/generateRecommendations.js";
+
+import { uploadMovieVectors } from "./services/movieVectorApi.js";
+
+import { getCountMovieVectors } from "./services/movieVectorApi.js";
+
+import { uploadUserVectors } from "./services/userVectorApi.js";
+
+import { getCountUserVectors } from "./services/userVectorApi.js";
 
 let _globalCtx = {};
 
@@ -61,10 +67,40 @@ async function init() {
     // passo 3
     buildMoviesVector(context);
 
+    console.log(context.movieVectors[0]);
+
+    const movieVectorsCount = await getCountMovieVectors();
+
+    if (movieVectorsCount.count === 0) {
+
+        await uploadMovieVectors(context.movieVectors, (current, total) => {
+            updateStatus(
+                "☁️",
+                `Enviando vetores (${current}/${total})`
+            );
+
+        })
+
+    }
+
     updateStatus("👤", "Gerando vetores dos usuários...");
 
     // passo 4
     buildUsersVector(context);
+    
+    const userVectorsCount = await getCountUserVectors();
+
+    if (userVectorsCount.count === 0) {
+
+        await uploadUserVectors(context.userVectors, (current, total) => {
+            updateStatus(
+                "☁️",
+                `Enviando vetores (${current}/${total})`
+            );
+
+        })
+
+    }
 
     _globalCtx = context;
 
@@ -81,7 +117,7 @@ async function init() {
     updateStatus("✨", "Gerando recomendações iniciais...");
 
     // passo 7
-    generateRecommendations(
+    await generateRecommendations(
         selectedUser.id,
         model,
         context,

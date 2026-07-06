@@ -13,7 +13,7 @@ export function registerEvents(model, context) {
         const user = getSelectedUser(context);
 
         renderWatchedMovies(user);
-        console.log(user.id);
+
         generateRecommendations(
             user.id,
             model,
