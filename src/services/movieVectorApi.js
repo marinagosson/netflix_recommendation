@@ -1,6 +1,6 @@
-const API_URL = 'https://netflix-recommendation-api-r15g.onrender.com/movie-vectors';
+import { API_URL } from "../config/api.js";
 
-const BATCH_SIZE = 100;
+import { BATCH_SIZE } from "../config/api.js";
 
 export async function searchMovieVectors(embedding, limit = 200) {
 
