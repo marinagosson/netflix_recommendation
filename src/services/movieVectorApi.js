@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/movie-vectors';
+const API_URL = 'https://netflix-recommendation-api-r15g.onrender.com/movie-vectors';
 
 const BATCH_SIZE = 100;
 
