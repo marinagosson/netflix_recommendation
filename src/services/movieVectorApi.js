@@ -2,9 +2,11 @@ import { API_URL } from "../config/api.js";
 
 import { BATCH_SIZE } from "../config/api.js";
 
+const ENDPOINT = "/movie-vectors";
+
 export async function searchMovieVectors(embedding, limit = 200) {
 
-    const response = await fetch(API_URL + "/search", {
+    const response = await fetch(API_URL  + ENDPOINT + "/search", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +43,7 @@ export async function uploadMovieVectors(movieVectors, onProgress) {
           };
       });
 
-      const response = await fetch(API_URL + "/batch", {
+      const response = await fetch(API_URL + ENDPOINT + "/batch", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +81,7 @@ function chunk(array, size) {
 
 export async function getCountMovieVectors() {
 
-    const response = await fetch(API_URL + "/count", {
+    const response = await fetch(API_URL + ENDPOINT + "/count", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -2,6 +2,8 @@ import { API_URL } from "../config/api.js";
 
 import { BATCH_SIZE } from "../config/api.js";
 
+const ENDPOINT = "/user-vectors";
+
 export async function uploadUserVectors(userVectors, onProgress) {
     
     const batches = chunk(
@@ -22,7 +24,7 @@ export async function uploadUserVectors(userVectors, onProgress) {
           };
       });
 
-      const response = await fetch(API_URL + "/batch", {
+      const response = await fetch(API_URL + ENDPOINT + "/batch", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +61,7 @@ function chunk(array, size) {
 
 export async function getCountUserVectors() {
 
-    const response = await fetch(API_URL + "/count", {
+    const response = await fetch(API_URL + ENDPOINT + "/count", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
